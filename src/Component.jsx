@@ -6,8 +6,13 @@ function Component() {
 
     const handleInput = event => {
         const file = event.target.files[0];
-        const path = URL.createObjectURL(file);
-        SetImagePath(path);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          SetImagePath(reader.result);
+        }
+        // const path = URL.createObjectURL(file);
+        // SetImagePath(path);
     }
 
   return (
